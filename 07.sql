@@ -1,6 +1,9 @@
 USE RestaurantDB;
 GO
 
+DROP VIEW IF EXISTS vw_Employees;
+GO
+
 CREATE VIEW vw_Employees AS
 SELECT 
 	e.EmployeeID,

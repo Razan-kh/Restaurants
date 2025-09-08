@@ -26,5 +26,3 @@ BEGIN
     RETURN @revenue;
 END;
 GO
-
-SELECT Restaurant.restaurant_revenue(1); 

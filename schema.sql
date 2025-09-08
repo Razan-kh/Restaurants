@@ -68,9 +68,9 @@ CREATE TABLE Restaurant.MenuItem (
 
 CREATE TABLE Restaurant.Reservation (
     ReservationID INT PRIMARY KEY IDENTITY(1,1),
-    RestaurantTableID INT FOREIGN KEY REFERENCES Restaurant.[Table](TableID),
     CustomerID INT FOREIGN KEY REFERENCES Restaurant.Customer(CustomerID),
     RestaurantID INT FOREIGN KEY REFERENCES Restaurant.Restaurant(RestaurantID),
+    TableID INT FOREIGN KEY REFERENCES Restaurant.[Table](TableID),
     PartySize INT,
     ReservationDate DATE
 );

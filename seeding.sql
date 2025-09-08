@@ -54,9 +54,9 @@ BEGIN
         CONCAT('Emp', @i),
         CONCAT('LN', @i),
         CASE (ABS(CHECKSUM(NEWID())) % 3)
-            WHEN 0 THEN 'Chef'
-            WHEN 1 THEN 'Waiter'
-            ELSE 'Manager'
+            WHEN 0 THEN 'AssistantWaiter'
+            WHEN 1 THEN 'VIPOrdersWaiter'
+            ELSE 'StandardWaiter'
         END,
         ((@i - 1) % 50) + 1
     );
@@ -83,9 +83,8 @@ PRINT 'Seeding Reservations...';
 SET @i = 1;
 WHILE @i <= 500
 BEGIN
-    INSERT INTO Restaurant.Reservation (Quantity, TableID, CustomerID, RestaurantID, PartySize, ReservationDate)
+    INSERT INTO Restaurant.Reservation (TableID, CustomerID, RestaurantID, PartySize, ReservationDate)
     VALUES (
-        1,
         ((@i - 1) % 100) + 1,
         ((@i - 1) % 400) + 1,
         ((@i - 1) % 50) + 1,

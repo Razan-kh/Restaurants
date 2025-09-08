@@ -1,7 +1,10 @@
 USE RestaurantDB;
 GO
 
-CREATE VIEW vw_ReservationReport AS
+DROP VIEW IF EXISTS Restaurant.vw_ReservationReport;
+GO
+
+CREATE VIEW Restaurant.vw_ReservationReport AS
 SELECT 
     r.ReservationID,
     r.ReservationDate,
@@ -21,5 +24,4 @@ INNER JOIN Restaurant.Customer c
     ON r.CustomerID = c.CustomerID
 INNER JOIN Restaurant.Restaurant res
     ON res.RestaurantID = r.RestaurantID;
-
-SELECT * FROM vw_ReservationReport;
+GO
