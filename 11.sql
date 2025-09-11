@@ -1,10 +1,7 @@
 USE RestaurantDB;
 GO
 
-DROP FUNCTION IF EXISTS Restaurant.restaurant_revenue;
-GO
-
-CREATE FUNCTION Restaurant.restaurant_revenue (
+CREATE OR ALTER FUNCTION Restaurant.fn_CalculateRevenue (
     @RestaurantId INT 
 )
 RETURNS FLOAT 

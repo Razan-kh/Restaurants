@@ -1,10 +1,7 @@
 USE RestaurantDB;
 GO
 
-DROP PROCEDURE IF EXISTS  Restaurant.sp_TablesAndRestuarnts;
-GO
-
-CREATE PROCEDURE Restaurant.sp_TablesAndRestuarnts
+CREATE OR ALTER PROCEDURE Restaurant.sp_TablesAndRestuarnts
 AS
 BEGIN
     CREATE TABLE #TempTables (
@@ -23,8 +20,5 @@ BEGIN
     SELECT * FROM #TempTables
     INNER JOIN Restaurant.Restaurant AS res
         ON res.RestaurantID = #TempTables.RestaurantID
-    INNER JOIN Restaurant.Reservation AS reserv
-        ON #TempTables.TableID = reserv.TableID
-     WHERE reserv.ReservationDate > SYSDATETIME();
 END;
 GO

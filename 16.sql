@@ -2,7 +2,7 @@ USE RestaurantDB;
 GO
 
 DROP TABLE IF EXISTS Restaurant.AuditLog;
-DROP TRIGGER IF EXISTS Restaurant.trg_AuditLog;
+GO
 
 CREATE TABLE Restaurant.AuditLog(
 ReservationID INT,
@@ -11,10 +11,11 @@ ResturantID INT,
 TableID INT,
 PartySize INT,
 ReservationDate DATE,
+ChangeDate DATE
 );
 GO
 
-CREATE TRIGGER Restaurant.trg_AuditLog
+CREATE OR ALTER TRIGGER Restaurant.trg_AuditLog
 ON Restaurant.Reservation
 AFTER INSERT
 AS
@@ -25,8 +26,16 @@ CustomerID,
 ResturantID,
 TableID,
 PartySize,
-ReservationDate
+ReservationDate,
+ChangeDate
 )
-SELECT *
+SELECT ReservationID,
+CustomerID,
+RestaurantID,
+TableID,
+PartySize,
+ReservationDate,
+GETDATE()
 FROM INSERTED;
 END;
+GO
